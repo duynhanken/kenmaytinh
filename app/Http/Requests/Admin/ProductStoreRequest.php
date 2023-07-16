@@ -28,6 +28,8 @@ class ProductStoreRequest extends FormRequest
             'ram_id' => ['required'],
             'cpu_id' => ['required'],
             'hard_driver_id' => ['required'],
+            'graphics_card_id' => ['required'],
+            'main_board_id' => ['required'],
             'image' => ['required','image'],
             'desc' => ['required'],
             'out_price' => ['required'],

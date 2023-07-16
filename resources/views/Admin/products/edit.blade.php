@@ -52,9 +52,8 @@
 
 
                         <div class="form-group">
-
+                            <h6>Thương Hiệu</h6>
                             <select name="brand_id" class="form-control" aria-label="Default select example">
-                                <option selected>Open this select menu Brand</option>
 
                                @foreach ($list_brand as $brand)
 
@@ -76,9 +75,8 @@
                         </div>
 
                         <div class="form-group">
-
+                            <h6>RAM</h6>
                             <select name="ram_id" class="form-control" aria-label="Default select example">
-                                <option selected>Open this select menu Ram</option>
 
                                @foreach ($list_rams as $ram)
 
@@ -100,9 +98,8 @@
                         </div>
 
                         <div class="form-group">
-
+                            <h6>CPU</h6>
                             <select name="cpu_id" class="form-control" aria-label="Default select example">
-                                <option selected>Open this select menu Cpu</option>
 
                                @foreach ($list_cpus as $cpu)
 
@@ -124,7 +121,53 @@
                         </div>
 
                         <div class="form-group">
+                            <h6>Mainboard</h6>
+                            <select name="main_board_id" class="form-control" aria-label="Default select example">
+                               @foreach ($list_main_board as $mainboard)
 
+                                    @if ($mainboard->id == $product->main_board_id)
+                                            <option value="{{$mainboard->id}}" selected>{{$mainboard->name}}</option>
+                                    @else
+                                            <option value="{{$mainboard->id}}">{{$mainboard->name}}</option>
+                                    @endif
+                               
+                               @endforeach
+                               
+                              </select>
+
+                            @error('main_board_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <h6>Card đồ họa</h6>
+                            <select name="graphics_card_id" class="form-control" aria-label="Default select example">
+                               @foreach ($list_graphics_card as $graphics_card)
+                                    
+
+                                    @if ($graphics_card->id == $product->graphics_card_id)
+                                            <option value="{{$graphics_card->id}}" selected>{{$graphics_card->name}}</option>
+                                    @else
+                                            <option value="{{$graphics_card->id}}">{{$graphics_card->name}}</option>
+                                    @endif
+                               
+                               @endforeach
+                               
+                              </select>
+
+                            @error('graphics_card_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <h6>Ổ Cứng</h6>
                             <select name="hard_driver_id" class="form-control" aria-label="Default select example">
                                 <option selected>Open this select menu Hard Drive</option>
 
@@ -180,8 +223,8 @@
                         <div class="form-group">
                        
                             <h6>Mô tả</h6>
-                            <textarea  id="editor" class="form-control " rows="5" required=""  name="desc" value="{{ old('desc',$product->desc) }}">
-
+                            <textarea  id="editor" class="form-control " rows="5" required=""  name="desc" value="">
+                                {{ old('desc',$product->desc) }}
                             </textarea>
                             {{-- <input type="text" class="form-control form-control-user @error('desc') is-invalid @enderror" name="desc" value="{{ old('desc',$product->desc) }}"
                                 required autocomplete="name" autofocus id="exampleInputName"

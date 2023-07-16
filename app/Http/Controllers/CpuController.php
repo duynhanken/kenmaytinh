@@ -40,7 +40,10 @@ class CpuController extends Controller
         $cpu = new Cpu();
         
         $cpu['name'] = $request->name;
-        $cpu['slug'] = Str::slug($request->name,'-');
+        $cpu['producer'] = $request->producer;
+        $cpu['cpuspeed'] = $request->cpuspeed;
+        $cpu['width'] = $request->width;
+        $cpu['cache'] = $request->cache;
         $cpu['desc'] = $request->desc;
         $cpu['status'] = $request->status;
         
@@ -70,8 +73,11 @@ class CpuController extends Controller
     public function update(CpuStoreRequest $request, Cpu $cpu)
     {
         $cpu['name'] = $request->name;
-        $cpu['slug'] = Str::slug($request->name,'-');
-        $cpu['desc'] = $request->desc;
+        $cpu['producer'] = $request->desc;
+        $cpu['producer'] = $request->producer;
+        $cpu['cpuspeed'] = $request->cpuspeed;
+        $cpu['width'] = $request->width;
+        $cpu['cache'] = $request->cache;
         $cpu['status'] = $request->status;
         
         $cpu->save();

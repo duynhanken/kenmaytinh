@@ -26,7 +26,7 @@
                                         @csrf
                                         
                                         <div class="form-group">
-                                            <h6>Name</h6>
+                                            <h6>Tên ổ cứng</h6>
                                             <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
                                                 placeholder="Harddrive name">
@@ -40,10 +40,48 @@
 
                                         <input type="hidden" name="slug" value="slug"/>
 
+                                        <div class="form-group">
+                                            <h6>Cổng</h6>
+                                            <input type="text" class="form-control form-control-user @error('gate') is-invalid @enderror" name="gate" value="{{ old('gate') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="Harddrive gate">
+            
+                                            @error('gate')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h6>Tốc độ đọc dữ liệu</h6>
+                                            <input type="text" class="form-control form-control-user @error('readingSpeed') is-invalid @enderror" name="readingSpeed" value="{{ old('readingSpeed') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="Harddrive readingSpeed">
+            
+                                            @error('readingSpeed')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h6>Điện năng sử dụng</h6>
+                                            <input type="text" class="form-control form-control-user @error('electricUsed') is-invalid @enderror" name="electricUsed" value="{{ old('electricUsed') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="Harddrive electricUsed">
+            
+                                            @error('electricUsed')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
 
                                         <div class="form-group">
-                                            <h6>Description</h6>
+                                            <h6>Mô tả</h6>
                                             <input type="text" class="form-control form-control-user @error('desc') is-invalid @enderror" name="desc" value="{{ old('desc') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
                                                 placeholder="Mô tả">

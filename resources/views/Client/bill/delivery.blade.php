@@ -35,6 +35,10 @@ padding: 30px;
                                 {
                                     echo 'Đã Xác Nhận';
                                 }
+                                else if($bill->status == 4)
+                                {
+                                    echo 'Đang giao hàng';
+                                }
                                 else if($bill->status == 3)
                                 {
                                     echo 'Thành Công';

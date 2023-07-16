@@ -10,9 +10,11 @@ use App\Http\Controllers\Client\ProductClientController;
 use App\Http\Controllers\CpuController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DepotController;
+use App\Http\Controllers\GraphicsCardController;
 use App\Http\Controllers\HardDriverController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MainBoardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RamController;
 use App\Http\Controllers\VoucherController;
@@ -67,6 +69,34 @@ Route::group(['middleware' => 'CheckAdminLogin','prefix' => 'admin','namespace' 
     Route::get('/rams/search',[RamController::class,'search'])->name('search-ram');
     Route::get('/rams/{rams_id}/active',[RamController::class,'active'])->name('active-rams');
     Route::get('/rams/{rams_id}/unactive',[RamController::class,'unactive'])->name('unactive-rams');
+
+
+    // Mainboard(Ram)
+
+    Route::get('/mainboard',[MainBoardController::class,'index'])->name('mainBoard-list');
+    Route::get('/mainboard/create',[MainBoardController::class,'create'])->name('mainBoard-create');
+    Route::post('/mainboard/store',[MainBoardController::class,'store'])->name('mainBoard-store');
+    Route::get('/mainboard/edit/{mainBoard:slug}',[MainBoardController::class,'edit'])->name('mainBoard-edit');
+    Route::put('/mainboard/update/{mainBoard}',[MainBoardController::class,'update'])->name('mainBoard-update');
+    Route::get('/mainboard/destroy/{mainBoards_id}',[MainBoardController::class,'destroy'])->name('mainBoard-destroy');
+    Route::post('/mainboard/process-all',[MainBoardController::class,'process_all'])->name('process-all-mainBoard');
+    Route::get('/mainboard/search',[MainBoardController::class,'search'])->name('search-mainBoard');
+    Route::get('/mainboard/{mainBoards_id}/active',[MainBoardController::class,'active'])->name('active-mainBoards');
+    Route::get('/mainboard/{mainBoards_id}/unactive',[MainBoardController::class,'unactive'])->name('unactive-mainBoards');
+
+
+    // GraphicsCard(Card đồ họa)
+
+    Route::get('/Graphics-Card',[GraphicsCardController::class,'index'])->name('graphicsCard-list');
+    Route::get('/Graphics-Card/create',[GraphicsCardController::class,'create'])->name('graphicsCard-create');
+    Route::post('/Graphics-Card/store',[GraphicsCardController::class,'store'])->name('graphicsCard-store');
+    Route::get('/Graphics-Card/edit/{graphicsCard:slug}',[GraphicsCardController::class,'edit'])->name('graphicsCard-edit');
+    Route::put('/Graphics-Card/update/{graphicsCard}',[GraphicsCardController::class,'update'])->name('graphicsCard-update');
+    Route::get('/Graphics-Card/destroy/{graphicsCards_id}',[GraphicsCardController::class,'destroy'])->name('graphicsCard-destroy');
+    Route::post('/Graphics-Card/process-all',[GraphicsCardController::class,'process_all'])->name('process-all-graphicsCard');
+    Route::get('/Graphics-Card/search',[GraphicsCardController::class,'search'])->name('search-graphicsCard');
+    Route::get('/Graphics-Card/{graphicsCards_id}/active',[GraphicsCardController::class,'active'])->name('active-graphicsCards');
+    Route::get('/Graphics-Card/{graphicsCards_id}/unactive',[GraphicsCardController::class,'unactive'])->name('unactive-graphicsCards');
 
     //CPU
 
@@ -168,6 +198,8 @@ Route::group(['middleware' => 'CheckAdminLogin','prefix' => 'admin','namespace' 
     Route::get('/bill/cancle/{id}',[BillController::class,'cancle'])->name('cancle-bill');
     Route::get('/bill/confirm/{id}',[BillController::class,'confirm'])->name('confirm-bill');
     Route::get('/bill/success/{id}',[BillController::class,'success'])->name('success-bill');
+    Route::get('/bill/shipping/{id}',[BillController::class,'shipping'])->name('shipping-bill');
+
    
 });
 
@@ -195,10 +227,10 @@ Route::group(['namespace' => 'client'],function(){
     Route::get('/product/search',[ProductClientController::class,'getSearch'])->name('get-search-product');
 
     Route::get('/product/detail/{id}',[ProductClientController::class,'getDetail'])->name('get-client-productDetail');
-    Route::get('/product/brand/{brand:slug}',[ProductClientController::class,'getProductByBrand'])->name('get-client-productByBrand');
-    Route::get('/product/cpu/{cpu:slug}',[ProductClientController::class,'getProductByCpu'])->name('get-client-productByCpu');
-    Route::get('/product/hard-driver/{hd:slug}',[ProductClientController::class,'getProductByHd'])->name('get-client-productByHd');
-    Route::get('/product/ram/{ram:slug}',[ProductClientController::class,'getProductByRam'])->name('get-client-productByRam');
+    Route::get('/product/brand/{id}',[ProductClientController::class,'getProductByBrand'])->name('get-client-productByBrand');
+    Route::get('/product/cpu/{id_cpu}',[ProductClientController::class,'getProductByCpu'])->name('get-client-productByCpu');
+    Route::get('/product/hard-driver/{id}',[ProductClientController::class,'getProductByHd'])->name('get-client-productByHd');
+    Route::get('/product/ram/{id}',[ProductClientController::class,'getProductByRam'])->name('get-client-productByRam');
 
 
     // fillter

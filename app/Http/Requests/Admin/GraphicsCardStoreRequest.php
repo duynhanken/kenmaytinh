@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CpuStoreRequest extends FormRequest
+class GraphicsCardStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class CpuStoreRequest extends FormRequest
         return [
             'name' => ['required'],
             'slug' => ['required'],
-            'producer' => ['required'],
-            'cpuspeed' => ['required'],
-            'width' => ['required'],
-            'cache' => ['required'],
-            'desc' => ['required'],
+            'capacityCard'=> ['required'],
+            'cateCard' => ['required'],
+            'manufacturer' => ['required'],
             'status' => ['required'],
         ];
     }

@@ -65,7 +65,13 @@
             ?>
                 Đã Xác Nhận 
                 <a href='{{route("cancle-bill",$bill->id)}}' class='btn btn-danger'>Hủy Đơn Hàng</a>
-                <a href='{{route("success-bill",$bill->id)}}' class='btn text-white'style='background-color:blue;'>Thành Công</a>
+                <a href='{{route("shipping-bill",$bill->id)}}' class='btn text-white'style='background-color:blue;'>Giao Hàng</a>
+            <?php }
+             else if($bill->status == 4)
+            {
+            ?>
+                Đang giao hàng 
+                <a href='{{route("success-bill",$bill->id)}}' class='btn text-white'style='background-color:blue;'>Thành công</a>
             <?php }
             else if($bill->status == 3)
             {

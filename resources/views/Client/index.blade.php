@@ -158,7 +158,7 @@ Session::put('error',null);
 
                                 </div>
                                 <?php
-                                }else
+                               }else
                                 {
                                     ?>
                                 <div class="header-action-icon-2">
@@ -207,7 +207,7 @@ Session::put('error',null);
 
                                                 <div class="shopping-cart-button">
                                                     <a href="{{route('view-to-cart')}}" class="outline">View cart</a>
-                                                  
+                                                    {{-- <a href="{{ route('checkout') }}">Checkout</a> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -218,7 +218,6 @@ Session::put('error',null);
                                 <?php
                                 }
                                ?>
-                        
 
                             </div>
                         </div>

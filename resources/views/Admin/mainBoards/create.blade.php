@@ -3,7 +3,7 @@
 @section('admin_content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb4">
-        <h1 class="h3 mb-0 text-gray-800">CPU</h1>
+        <h1 class="h3 mb-0 text-gray-800">Mainboard</h1>
     </div>
 
    
@@ -20,16 +20,16 @@
                             <div class="col-lg-6">
                                 <div class="p-7">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Create CPU</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Create Mainboard</h1>
                                     </div>
-                                    <form method="POST" action="{{ route('cpu-store') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('mainBoard-store') }}" >
                                         @csrf
                                         
                                         <div class="form-group">
-                                            <h6>Tên CPU</h6>
+                                            <h6>Tên Mainboard</h6>
                                             <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
-                                                placeholder="Cpu name">
+                                                placeholder="Mainboard name">
             
                                             @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -41,64 +41,70 @@
                                         <input type="hidden" name="slug" value="slug"/>
 
                                         <div class="form-group">
-                                            <h6>Hãng sản xuất CPU</h6>
-                                            <input type="text" class="form-control form-control-user @error('producer') is-invalid @enderror" name="producer" value="{{ old('producer') }}"
+                                            <h6>Kích Thước Mainboard</h6>
+                                            <input type="text" class="form-control form-control-user @error('size') is-invalid @enderror" name="size" value="{{ old('size') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
-                                                placeholder="Cpu name">
+                                                placeholder="size">
             
-                                            @error('producer')
+                                            @error('size')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
                                         </div>
-
-
                                         <div class="form-group">
-                                            <h6>Tốc độ xử lý của CPU</h6>    
-                                            <input type="text" class="form-control form-control-user @error('cpuspeed') is-invalid @enderror" name="cpuspeed" value="{{ old('cpuspeed') }}"
-                                                required autocomplete="cpuspeed" autofocus id="exampleInputName"
-                                                placeholder="Cpu name">
-            
-                                            @error('cpuspeed')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <h6>Dung lượng của CPU</h6>
-                                            <input type="text" class="form-control form-control-user @error('width') is-invalid @enderror" name="width" value="{{ old('width') }}"
-                                                required autocomplete="width" autofocus id="exampleInputName"
-                                                placeholder="Cpu width">
-            
-                                            @error('width')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <h6>Bộ nhớ Cache của CPU</h6>
-                                            <input type="text" class="form-control form-control-user @error('cache') is-invalid @enderror" name="cache" value="{{ old('cache') }}"
+                                            <h6>Chipset</h6>
+                                            <input type="text" class="form-control form-control-user @error('chipset') is-invalid @enderror" name="chipset" value="{{ old('chipset') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
-                                                placeholder="Cpu cache">
+                                                placeholder="chipset">
             
-                                            @error('cache')
+                                            @error('chipset')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <h6>Cổng USB</h6>
+                                            <input type="text" class="form-control form-control-user @error('usbgate') is-invalid @enderror" name="usbgate" value="{{ old('usbgate') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="usbgate">
+            
+                                            @error('usbgate')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
                                         </div>
 
-
+                                        <div class="form-group">
+                                            <h6>Khe Cắm Ram</h6>
+                                            <input type="text" class="form-control form-control-user @error('ramslots') is-invalid @enderror" name="ramslots" value="{{ old('ramslots') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="ramslots">
+            
+                                            @error('ramslots')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
                                         <div class="form-group">
-                                            <h6>Mô tả CPU</h6>
+                                            <h6>Hãng sản xuất</h6>
+                                            <input type="text" class="form-control form-control-user @error('manufacturer') is-invalid @enderror" name="manufacturer" value="{{ old('manufacturer') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="manufacturer">
+            
+                                            @error('manufacturer')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h6>Mô Tả</h6>
                                             <input type="text" class="form-control form-control-user @error('desc') is-invalid @enderror" name="desc" value="{{ old('desc') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
                                                 placeholder="Mô tả">
@@ -126,7 +132,7 @@
                                         <div class="">
                                             <div class="">
                                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                    {{ __('Create CPU') }}
+                                                    {{ __('Create Brands') }}
                                                 </button>
                                             </div>
                                         </div>
@@ -141,20 +147,6 @@
         </div>
     </div>
 
-    <script>
-        function showFile() 
-        {
-            var input = event.target;
-            var reader = new FileReader();
-            reader.onload = function()
-                {
-                    var dataURL = reader.result;
-                    var output = document.getElementById('file-preview');
-                    output.src = dataURL;
-                }
-            reader.readAsDataURL(input.files([0]));
-        }
-    </script>
     
 
 @endsection

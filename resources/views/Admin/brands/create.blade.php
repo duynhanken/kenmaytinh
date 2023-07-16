@@ -26,7 +26,7 @@
                                         @csrf
                                         
                                         <div class="form-group">
-            
+                                            <h6>Tên Nhãn Hiệu</h6>
                                             <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
                                                 placeholder="Brands name">
@@ -39,7 +39,7 @@
                                         </div>
 
                                         <div class="form-group">
-            
+                                            <h6>Slug</h6>
                                             <input type="text" class="form-control form-control-user @error('slug') is-invalid @enderror" name="slug" value="{{ old('slug') }}"
                                                 required autocomplete="slug" autofocus id="exampleInputName"
                                                 placeholder="Brands slug">
@@ -52,7 +52,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            
+                                            <h6>Hình Ảnh</h6>
                                             <img src="" alt="" class="img-product" id="file-preview"/> 
 
                                             <input type="file" class="form-control form-control-user @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}"
@@ -68,7 +68,7 @@
 
 
                                         <div class="form-group">
-            
+                                            <h6>Mô Tả</h6>
                                             <input type="text" class="form-control form-control-user @error('desc') is-invalid @enderror" name="desc" value="{{ old('desc') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
                                                 placeholder="Mô tả">

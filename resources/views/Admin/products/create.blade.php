@@ -22,6 +22,22 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Create Products</h1>
                                     </div>
+
+                                    <div>
+                                        @if (session()->has('message'))
+                                            <div class="alert alert-success"
+                                                style="
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                ">
+                                                {{ session('message') }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                
+                                
+
                                     <form method="POST" action="{{ route('product-store') }}" enctype="multipart/form-data">
                                         @csrf
                                         
@@ -54,7 +70,6 @@
                                         <div class="form-group">
                                             <h6>Nhãn Hiệu</h6>
                                             <select name="brand_id" class="form-control" aria-label="Default select example">
-                                                <option selected>Open this select menu Brand</option>
 
                                                @foreach ($brands as $brand)
                                                 <option value="{{$brand->id}}">{{$brand->name}}</option>
@@ -72,7 +87,6 @@
                                         <div class="form-group">
                                             <h6>Ram</h6>
                                             <select name="ram_id" class="form-control" aria-label="Default select example">
-                                                <option selected>Open this select menu Ram</option>
 
                                                @foreach ($rams as $ram)
                                                 <option value="{{$ram->id}}">{{$ram->name}}</option>
@@ -91,7 +105,6 @@
                                         <div class="form-group">
                                             <h6>CPU</h6>
                                             <select name="cpu_id" class="form-control" aria-label="Default select example">
-                                                <option selected>Open this select menu Cpu</option>
 
                                                @foreach ($cpus as $cpu)
                                                 <option value="{{$cpu->id}}">{{$cpu->name}}</option>
@@ -106,11 +119,47 @@
                                             @enderror
                                         </div>
 
+
+                                        <div class="form-group">
+                                            <h6>MainBoard</h6>
+                                            <select name="main_board_id" class="form-control" aria-label="Default select example">
+                                              
+                                               @foreach ($mainBoards as $mainboard)
+                                                <option value="{{$mainboard->id}}">{{$mainboard->name}}</option>
+                                               @endforeach
+                                               
+                                              </select>
+            
+                                            @error('main_board_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <h6>Card Đồ Họa</h6>
+                                            <select name="graphics_card_id" class="form-control" aria-label="Default select example">
+                                               
+
+                                               @foreach ($graphics as $gp)
+                                                <option value="{{$gp->id}}">{{$gp->name}}</option>
+                                               @endforeach
+                                               
+                                              </select>
+            
+                                            @error('graphics_card_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
                                         
                                         <div class="form-group">
                                             <h6>Ổ cứng</h6>
                                             <select name="hard_driver_id" class="form-control" aria-label="Default select example">
-                                                <option selected>Open this select menu Hard Driver</option>
 
                                                @foreach ($harddrives as $harddrive)
                                                 <option value="{{$harddrive->id}}">{{$harddrive->name}}</option>

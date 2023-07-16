@@ -27,6 +27,7 @@ class HomeClientController extends Controller
 
     public function getClientHome()
     {
+        
         // $id_customer = Auth::guard('customer')->user()->id;
         // $all_cart = Cart::where('customer_id',$id_customer)->get();
         // $cart_count = Cart::where('customer_id',$id_customer)->count();

@@ -49,7 +49,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $all_product->links() }}
+          
 
         </div>
     </form>

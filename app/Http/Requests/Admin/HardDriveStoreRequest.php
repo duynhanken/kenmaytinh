@@ -24,6 +24,9 @@ class HardDriveStoreRequest extends FormRequest
         return [
             'name' => ['required'],
             'slug' => ['required'],
+            'gate' => ['required'],
+            'readingSpeed' => ['required'],
+            'electricUsed' => ['required'],
             'desc' => ['required'],
             'status' => ['required'],
         ];

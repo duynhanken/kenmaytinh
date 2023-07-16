@@ -12,10 +12,6 @@ use Illuminate\Http\Request;
 
 class ProductClientController extends Controller
 {
-    public function fillterProduct($product,Request $request)
-    {
-        
-    }
 
     public function getDetail($id)
     {
@@ -30,47 +26,118 @@ class ProductClientController extends Controller
         $max_price = Product::max('out_price');
         $brand = Brand::find($id_brand);
         
-        if(isset($_GET['star_price']) && $_GET['end_price']){
-            $min = $_GET['star_price'];
+        if(isset($_GET['start_price']) && $_GET['end_price']){
+            $min = $_GET['start_price'];
             $max = $_GET['end_price'];
-            $list_product = $brand->product->whereBetween('out_price',[ $min,$max])->get();
+            $list_product = Product::where('brand_id',$id_brand)->where('status',1)->where('quantity','>',0)->whereBetween('out_price',[ $min,$max])->paginate(8);
         }
+        else{
      
-        $list_product = $brand->product->where('status',1)->where('quantity','>',0);
+            $list_product =  Product::where('brand_id',$id_brand)->where('status',1)->where('quantity','>',0)->paginate(8);
+        }
         return view('client.product.index')->with('brand_name',$brand->name)->with('list_product',$list_product)->with('min_price',$min_price)->with('max_price',$max_price);
     }
 
     public function getProductByCpu($id_cpu)
     {
+        $min_price = Product::min('out_price');
+        $max_price = Product::max('out_price');
         $cpu = Cpu::find($id_cpu);
-        $list_product = $cpu->product->where('status',1)->where('quantity','>',0);
-        return view('client.product.index')->with('cpu_name',$cpu->name)->with('list_product',$list_product);
+        if(isset($_GET['start_price']) && $_GET['end_price']){
+            $min = $_GET['start_price'];
+            $max = $_GET['end_price'];
+            $list_product = Product::where('cpu_id',$id_cpu)->where('status',1)->where('quantity','>',0)->whereBetween('out_price',[ $min,$max])->paginate(8);
+        }
+        else{
+            $list_product = Product::where('cpu_id',$id_cpu)->where('status',1)->where('quantity','>',0)->paginate(8);
+        }
+        return view('client.product.index')->with('cpu_name',$cpu->name)->with('list_product',$list_product)->with('min_price',$min_price)->with('max_price',$max_price);
     }
 
     public function getProductByHd($id_hd)
     {
+        $min_price = Product::min('out_price');
+        $max_price = Product::max('out_price');
         $hd = HardDriver::find($id_hd);
-        $list_product = $hd->product->where('status',1)->where('quantity','>',0);
-        return view('client.product.index')->with('hd_name',$hd->name)->with('list_product',$list_product);
+        if(isset($_GET['start_price']) && $_GET['end_price']){
+            $min = $_GET['start_price'];
+            $max = $_GET['end_price'];
+            $list_product =  Product::where('hard_driver_id',$id_hd)->where('status',1)->where('quantity','>',0)->whereBetween('out_price',[ $min,$max])->paginate(8);
+        }
+        else{
+        $list_product = Product::where('hard_driver_id',$id_hd)->where('status',1)->where('quantity','>',0)->paginate(8);
+        }
+        return view('client.product.index')->with('hd_name',$hd->name)->with('list_product',$list_product)->with('min_price',$min_price)->with('max_price',$max_price);
     }
 
     public function getProductByRam($id_ram)
     {
+        $min_price = Product::min('out_price');
+        $max_price = Product::max('out_price');
         $ram = Ram::find($id_ram);
-        $list_product = $ram->product->where('status',1)->where('quantity','>',0);
-        return view('client.product.index')->with('ram_name',$ram->name)->with('list_product',$list_product);
+        if(isset($_GET['start_price']) && $_GET['end_price']){
+            $min = $_GET['start_price'];
+            $max = $_GET['end_price'];
+            $list_product =  Product::where('ram_id',$id_ram)->whereBetween('out_price',[ $min,$max])->paginate(8);
+        }
+        else{
+            $list_product = Product::where('ram_id',$id_ram)->where('status',1)->where('quantity','>',0)->paginate(8);
+        }
+        return view('client.product.index')->with('ram_name',$ram->name)->with('list_product',$list_product)->with('min_price',$min_price)->with('max_price',$max_price);
     }
 
-    public function getProduct()
+    public function getProduct(Request $request)
+    {
+        
+        $product = Product::all();
+        $min_price = Product::min('out_price');
+        $max_price = Product::max('out_price');
+        $orderBy = $request->sort_by ?? 'name_ascending';
+        
+        if(isset($_GET['sort_by']))
+        {
+
+            switch($orderBy){
+                case 'name_ascending':
+                    $list_product = Product::orderBy('name','ASC')->paginate(8)->appends(['sort_by' =>$orderBy]);
+                    break;
+                case 'name_descending':
+                    $list_product = Product::orderBy('name','DESC')->paginate(8)->appends(['sort_by' =>$orderBy]);
+                    break;
+                case 'price_ascending':
+                    $list_product = Product::orderBy('out_price','ASC')->paginate(8)->appends(['sort_by' =>$orderBy]);
+                    break;
+                case 'price_descending':
+                    $list_product = Product::orderBy('out_price','DESC')->paginate(8)->appends(['sort_by' =>$orderBy]);
+                    break;
+                default:
+                    $list_product = Product::orderBy('name','DESC')->paginate(8)->appends(['sort_by' =>$orderBy]);
+                    break;
+        }
+            
+    }
+        
+        else if(isset($_GET['start_price']) && $_GET['end_price']){
+          
+            $min = $_GET['start_price'];
+            $max = $_GET['end_price'];
+            $list_product = $product->whereBetween('out_price',[ $min,$max]);
+        }
+        else{
+     
+            $list_product = Product::where('status',1)->where('quantity','>',0)->paginate(8);
+        }
+        return view('client.product.index')->with('list_product',$list_product)->with('min_price',$min_price)->with('max_price',$max_price);
+    }
+
+    public function getSearch(Request $request)
     {
         $min_price = Product::min('out_price');
         $max_price = Product::max('out_price');
-        $list_product = Product::where([['status',1],['quantity','>',0]])->paginate(8);
-        return view('client.product.index')->with('list_product',$list_product)->with('min_price',$min_price)->with('max_price',$max_price);
-    }
-    public function getSearch(Request $request)
-    {
         $list_product = Product::where([['name','like','%'.$request->search.'%'],['status',1]])->get();
-        return view('client.product.index')->with('searchName',$request->search)->with('list_product',$list_product);
+        return view('client.product.index')->with('searchName',$request->search)->with('list_product',$list_product)->with('min_price',$min_price)->with('max_price',$max_price);
     }
+
+    
+
 }

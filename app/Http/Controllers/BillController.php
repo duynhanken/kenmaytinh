@@ -95,10 +95,11 @@ class BillController extends Controller
         $bill->save();
         return redirect()->back();
     }
-    public function success($id)
+
+    public function shipping($id)
     {
         $bill = Bill::findOrFail($id);
-        $bill->status = 3;
+        $bill->status = 4;
         $bill->save();
         foreach($bill->detail_bill as $detail_bill)
         {
@@ -106,6 +107,14 @@ class BillController extends Controller
             $product->quantity = $product->quantity - $detail_bill->quantity;
             $product->save(); 
         }
+        return redirect()->back();
+    }
+
+    public function success($id)
+    {
+        $bill = Bill::findOrFail($id);
+        $bill->status = 3;
+        $bill->save();
         return redirect()->back();
     }
     public function cancle($id)

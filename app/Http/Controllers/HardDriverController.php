@@ -40,6 +40,9 @@ class HardDriverController extends Controller
         $hardDriver = new HardDriver();
         $hardDriver['name'] = $request->name;
         $hardDriver['slug'] = Str::slug($request->name,'-');
+        $hardDriver['gate'] = $request->gate;
+        $hardDriver['readingSpeed'] = $request->readingSpeed;
+        $hardDriver['electricUsed'] = $request->electricUsed;
         $hardDriver['desc'] = $request->desc;
         $hardDriver['status'] = $request->status;
 

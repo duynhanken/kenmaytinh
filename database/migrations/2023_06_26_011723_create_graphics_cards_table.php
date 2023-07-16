@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id()->unsigned();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('apacity')->nullable();
+            $table->string('capacityCard')->nullable();
+            $table->string('cateCard')->nullable();
             $table->string('manufacturer')->nullable();
+            $table->longText('desc')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

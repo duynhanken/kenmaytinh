@@ -58,7 +58,7 @@
                                 <td>{{$detail_bill->price}}</td>
                                 <td>
                                
-                                <a href="" onclick="return confirm('Bạn có chắc muốn ');" ><label class="fa fa-trash">Xóa</label></a>
+                                {{-- <a href="" onclick="return confirm('Bạn có chắc muốn ');" ><label class="fa fa-trash">Xóa</label></a> --}}
                                 </td>
                             </tr>
                             @endforeach

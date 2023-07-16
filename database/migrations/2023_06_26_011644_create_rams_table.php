@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('capacity')->nullable();
             $table->string('bus')->nullable();
             $table->string('bandwidth')->nullable();
+            $table->string('numberofpins')->nullable();
             $table->longText('desc')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

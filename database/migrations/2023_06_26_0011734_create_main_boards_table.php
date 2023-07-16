@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('main_boards', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unsigned();
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('size')->nullable();
@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('usbgate')->nullable();
             $table->string('ramslots')->nullable();
             $table->string('manufacturer')->nullable();
+            $table->longText('desc')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

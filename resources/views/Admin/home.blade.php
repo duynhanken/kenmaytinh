@@ -47,6 +47,10 @@
                      <!-- Divider -->
              <hr class="sidebar-divider">
 
+              <!-- Heading -->
+            <div class="sidebar-heading">
+               Linh Kiện
+            </div>
                 <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -59,6 +63,8 @@
                         <a class="collapse-item" href="{{route('ram-list')}}">Ram</a>
                         <a class="collapse-item" href="{{route('cpu-list')}}">CPU</a>
                         <a class="collapse-item" href="{{route('harddriver-list')}}">Ổ Cứng</a>
+                        <a class="collapse-item" href="{{route('mainBoard-list')}}">Mainboard</a>
+                        <a class="collapse-item" href="{{route('graphicsCard-list')}}">Card Đồ Họa</a>
 
                     </div>
                 </div>
@@ -104,6 +110,9 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            <div class="sidebar-heading">
+                Kho Hàng
+             </div>
            
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -124,6 +133,13 @@
                 </div>
             </li>
 
+             <!-- Divider -->
+             <hr class="sidebar-divider">
+
+             <div class="sidebar-heading">
+                 Hóa đơn khách hàng
+              </div>
+            
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                 aria-expanded="true" aria-controls="collapsePages">

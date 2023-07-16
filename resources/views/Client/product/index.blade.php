@@ -19,63 +19,112 @@
         <div class="container">
 			<div class="row">
 				<div class="col-lg-9">
-				<div class="mt-10 mb-50">
-                    <h3><center><?php if(isset($searchName)) echo 'Kết quả tìm kiếm: <span>'.$searchName.'</span>'; else if(isset($cpu_name)) echo 'Sản Phẩm Thuộc Cpu <span>'.$cpu_name.'</span>';else if(isset($hd_name)) echo 'Sản Phẩm Thuộc ổ cứng <span>'.$hd_name.'</span>'; else if(isset($ram_name)) echo 'Sản phẩm thuộc ram <span>'.$ram_name.'</span>'; else if(isset($brand_name)) echo 'Sản Phẩm Thuộc Thương Hiệu <span>'.$brand_name.'</span>'; else echo 'Tất Cả Sản Phẩm';  ?> </center>
-					</h3>
-                </div>
-					<div class="row product-grid-4">
-						@foreach ($list_product ?? '' as $product)
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
-		
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="{{ route('get-client-productDetail', $product->id) }}">
-												<img class="default-img" src="{{ "/storage/$product->image" }}"
-													alt="">
-												<img class="hover-img" src="{{ "/storage/$product->image" }}"
-													alt="">
-											</a>
-										</div>
-		
-										<div class="product-badges product-badges-position product-badges-mrg">
-		
-										</div>
-										<div class="product-content-wrap">
-											{{-- <div class="product-category">
-													<a href="shop.html">Clothing</a>
-												</div> --}}
-											<h2><a
-													href="{{ route('get-client-productDetail', $product->id) }}">{{ $product->name }}</a>
-											</h2>
-		
-											<div class="product-price">
-												<span class=""><?php echo number_format($product->out_price); ?> đ</span>
-												{{-- <span class="old-price">$245.8</span> --}}
-											</div>
-											<div class="product-price">
-												<span>{{ $product->ram->name }}</span>
-											</div>
-											<div class="product-action-1 show">
-		
-												<a aria-label="Add To Cart" class="action-btn hover-up"
-													href="{{ route('add-to-cart', $product->id) }}"><i
-														class="fi-rs-shopping-bag-add"></i></a>
-											</div>
-										</div>
-									</div>
-		
-								</div>
-		
-							</div>
-							
-						@endforeach
-		
-						
-						<!--End product-grid-4-->
-					</div>
-					<?php try{ ?>{{$list_product->links()}}<?php } catch(Exception $e) {} ?>
-				</div>
+                        <div class="mt-10 mb-50">
+                            <div class="shop-product-fillter">
+                               
+                                <div class="sort-by-product-area">
+                                  
+                                    <div class="sort-by-cover">
+                                        <div class="sort-by-product-wrap">
+                                            <div class="sort-by">
+                                                <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
+                                            </div>
+                                            <div class="sort-by-dropdown-wrap">
+                                                <form action="">
+                                                    @csrf
+                                                    <div class="select-option">
+                                                        <select name="sort_by" onchange="this.form.submit();" class="sorting">
+                                                            <option {{request('sort_by') == 'name_ascending'? 'selected':''}} value="name_ascending"> Name A-Z</option>
+                                                            <option {{request('sort_by') == 'name_descending'? 'selected':''}} value="name_descending"> Name Z-A</option>
+                                                            <option {{request('sort_by') == 'price_ascending'? 'selected':''}} value="price_ascending"> Price Ascending</option>
+                                                            <option {{request('sort_by') == 'price_descending'? 'selected':''}} value="price_descending"> Price Descending</option>
+                                                        </select>
+                                                        
+                                                    </div>
+                                                   </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3><center><?php if(isset($searchName)) echo 'Kết quả tìm kiếm: <span>'.$searchName.'</span>'; else if(isset($cpu_name)) echo 'Sản Phẩm Thuộc Cpu <span>'.$cpu_name.'</span>';else if(isset($hd_name)) echo 'Sản Phẩm Thuộc ổ cứng <span>'.$hd_name.'</span>'; else if(isset($ram_name)) echo 'Sản phẩm thuộc ram <span>'.$ram_name.'</span>'; else if(isset($brand_name)) echo 'Sản Phẩm Thuộc Thương Hiệu <span>'.$brand_name.'</span>'; else echo 'Tất Cả Sản Phẩm';  ?> </center>
+                            </h3>
+                            {{-- <div class="col-lg-9 order-1 order-lg-2">
+                                <div class="product-show-option">
+                                    <div class="row">
+                                        <div class="col-lg7 col-md-7">
+                                           <form action="">
+                                            @csrf
+                                            <div class="select-option">
+                                                <select name="sort_by" onchange="this.form.submit();" class="sorting">
+                                                    <option {{request('sort_by') == 'name_ascending'? 'selected':''}} value="name_ascending">Sorting: Name A-Z</option>
+                                                    <option {{request('sort_by') == 'name_descending'? 'selected':''}} value="name_descending">Sorting: Name Z-A</option>
+                                                    <option {{request('sort_by') == 'price_ascending'? 'selected':''}} value="price_ascending">Sorting: Price Ascending</option>
+                                                    <option {{request('sort_by') == 'price_descending'? 'selected':''}} value="price_descending">Sorting: Price Descending</option>
+                                                </select>
+                                                
+                                            </div>
+                                           </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+                        </div>
+                            <div class="row product-grid-4">
+                                @foreach ($list_product ?? '' as $product)
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
+                
+                                        <div class="product-cart-wrap mb-30">
+                                            <div class="product-img-action-wrap">
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="{{ route('get-client-productDetail', $product->id) }}">
+                                                        <img class="default-img" src="{{ "/storage/$product->image" }}"
+                                                            alt="">
+                                                        <img class="hover-img" src="{{ "/storage/$product->image" }}"
+                                                            alt="">
+                                                    </a>
+                                                </div>
+                
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                
+                                                </div>
+                                             
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                {{-- <div class="product-category">
+                                                        <a href="shop.html">Clothing</a>
+                                                    </div> --}}
+                                                <h2><a
+                                                        href="{{ route('get-client-productDetail', $product->id) }}">{{ $product->name }}</a>
+                                                </h2>
+            
+                                                <div class="product-price">
+                                                    <span class=""><?php echo number_format($product->out_price); ?> đ</span>
+                                                    {{-- <span class="old-price">$245.8</span> --}}
+                                                </div>
+                                                <div class="">
+                                                    <span>RAM: {{ $product->ram->name }}</span>
+                                                </div>
+                                                <div class="product-action-1 show">
+            
+                                                    <a aria-label="Add To Cart" class="action-btn hover-up"
+                                                        href="{{ route('add-to-cart', $product->id) }}"><i
+                                                            class="fi-rs-shopping-bag-add"></i></a>
+                                                </div>
+                                            </div>
+                
+                                        </div>
+                
+                                    </div>
+                                    
+                                @endforeach
+                
+                                
+                                <!--End product-grid-4-->
+                            </div>
+                            <?php try{ ?>{{$list_product->links()}}<?php } catch(Exception $e) {} ?>
+                        </div>
+                        
 				<div class="col-lg-3 primary-sidebar sticky-sidebar">
                     <!-- Fillter By Price -->
                   <form>

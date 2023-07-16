@@ -26,7 +26,7 @@
                                         @csrf
                                         
                                         <div class="form-group">
-                                        
+                                            <h6>Tên Ram</h6>
                                             <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
                                                 placeholder="Rams name">
@@ -40,10 +40,58 @@
 
                                         <input type="hidden" name="slug" value="slug"/>
 
-
+                                        <div class="form-group">
+                                            <h6>Dung Lượng Ram (GB)</h6>
+                                            <input type="text" class="form-control form-control-user @error('capacity') is-invalid @enderror" name="capacity" value="{{ old('capacity') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="Rams capacity">
+            
+                                            @error('capacity')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <h6>Tốc Độ Bus (MHZ)</h6>
+                                            <input type="text" class="form-control form-control-user @error('bus') is-invalid @enderror" name="bus" value="{{ old('bus') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="Rams bus">
+            
+                                            @error('bus')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <h6>Băng Thông</h6>
+                                            <input type="text" class="form-control form-control-user @error('bandwidth') is-invalid @enderror" name="bandwidth" value="{{ old('bandwidth') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="Rams bandwidth">
+            
+                                            @error('bandwidth')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
                                         <div class="form-group">
+                                            <h6>Số Chân</h6>
+                                            <input type="text" class="form-control form-control-user @error('numberofpins') is-invalid @enderror" name="numberofpins" value="{{ old('numberofpins') }}"
+                                                required autocomplete="name" autofocus id="exampleInputName"
+                                                placeholder="Rams numberofpins">
             
+                                            @error('numberofpins')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h6>Mô Tả</h6>
                                             <input type="text" class="form-control form-control-user @error('desc') is-invalid @enderror" name="desc" value="{{ old('desc') }}"
                                                 required autocomplete="name" autofocus id="exampleInputName"
                                                 placeholder="Mô tả">

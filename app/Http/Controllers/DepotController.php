@@ -13,13 +13,13 @@ class DepotController extends Controller
 {
     public function getList()
     {
-        $all_product = Product::paginate(10);
+        $all_product = Product::all();
         return view('admin.depot.index',compact('all_product'));
     }
 
     public function postList()
     {
-        $all_product = Product::paginate(10);
+        $all_product = Product::all();
         return view('admin.depot.index',compact('all_product'));
     }
 
@@ -118,9 +118,9 @@ class DepotController extends Controller
 
     public function getListBill()
     {
-        $dathanhtoan = BillImport::where('status',1)->orderBy('id','desc')->paginate(50);
-        $chuathanhtoan = BillImport::where('status',0)->orderBy('id','desc')->paginate(50);
-        $dahuy = BillImport::where('status',-1)->orderBy('id','desc')->paginate(50); 
+        $dathanhtoan = BillImport::where('status',1)->orderBy('id','desc')->get();
+        $chuathanhtoan = BillImport::where('status',0)->orderBy('id','desc')->get();
+        $dahuy = BillImport::where('status',-1)->orderBy('id','desc')->get(); 
         return view('admin.depot.list_bill',compact('dathanhtoan','chuathanhtoan','dahuy'));
     }
 

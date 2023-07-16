@@ -3,7 +3,7 @@
 @section('admin_content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb4">
-        <h1 class="h3 mb-0 text-gray-800">Hard Driver</h1>
+        <h1 class="h3 mb-0 text-gray-800">Card đồ họa</h1>
     </div>
 
     <div class="container">
@@ -12,21 +12,21 @@
 
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Update Hard Driver
-                        <a href="{{route('harddriver-list')}}" class="float-right">Back</a>
+                    <div class="card-header">Update Card
+                        <a href="{{route('graphicsCard-list')}}" class="float-right">Back</a>
                     </div>
            
                
                 <div class="card-body">
-                    <form method="POST" action="{{ route('harddriver-update',$hardDriver->slug) }}" >
+                    <form method="POST" action="{{ route('graphicsCard-update',$graphicsCard->slug) }}" >
                         @csrf
                         @method('PUT')
     
                         <div class="form-group">
-                            <h6>Name</h6>
-                            <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name',$hardDriver->name) }}"
+                            <h6>Tên Mainboard</h6>
+                            <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name',$graphicsCard->name) }}"
                                 required autocomplete="name" autofocus id="exampleInputName"
-                                placeholder="harddriver -name">
+                                placeholder="graphicsCard -name">
     
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -36,52 +36,52 @@
     
                         </div>
 
-                        <input type="hidden" name="slug" value="{{$hardDriver->slug}}"/>
+                        <input type="hidden" name="slug" value="{{$graphicsCard->slug}}"/>
 
                         <div class="form-group">
-                            <h6>Cổng</h6>
-                            <input type="text" class="form-control form-control-user @error('gate') is-invalid @enderror" name="gate" value="{{ old('gate',$hardDriver->gate) }}"
+                            <h6>Loại Card</h6>
+                            <input type="text" class="form-control form-control-user @error('cateCard') is-invalid @enderror" name="cateCard" value="{{ old('cateCard',$graphicsCard->cateCard) }}"
                                 required autocomplete="name" autofocus id="exampleInputName"
-                                placeholder="Harddrive gate">
+                                placeholder="cateCard">
 
-                            @error('gate')
+                            @error('cateCard')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <h6>Dung lượng Card</h6>
+                            <input type="text" class="form-control form-control-user @error('capacityCard') is-invalid @enderror" name="capacityCard" value="{{ old('capacityCard',$graphicsCard->capacityCard) }}"
+                                required autocomplete="name" autofocus id="exampleInputName"
+                                placeholder="capacityCard">
+
+                            @error('capacityCard')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <h6>Hãng sản xuất Card</h6>
+                            <input type="text" class="form-control form-control-user @error('manufacturer') is-invalid @enderror" name="manufacturer" value="{{ old('manufacturer',$graphicsCard->manufacturer) }}"
+                                required autocomplete="name" autofocus id="exampleInputName"
+                                placeholder="manufacturer">
+
+                            @error('manufacturer')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <h6>Tốc độ đọc dữ liệu</h6>
-                            <input type="text" class="form-control form-control-user @error('readingSpeed') is-invalid @enderror" name="readingSpeed" value="{{ old('readingSpeed',$hardDriver->readingSpeed) }}"
-                                required autocomplete="name" autofocus id="exampleInputName"
-                                placeholder="Harddrive readingSpeed">
 
-                            @error('readingSpeed')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <h6>Điện năng sử dụng</h6>
-                            <input type="text" class="form-control form-control-user @error('electricUsed') is-invalid @enderror" name="electricUsed" value="{{ old('electricUsed',$hardDriver->electricUsed) }}"
-                                required autocomplete="name" autofocus id="exampleInputName"
-                                placeholder="Harddrive electricUsed">
-
-                            @error('electricUsed')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
 
                         <div class="form-group">
 
-                            <h6>Description</h6>
+                            <h6>Mô tả</h6>
 
-                            <input type="text" class="form-control form-control-user @error('desc') is-invalid @enderror" name="desc" value="{{ old('desc',$hardDriver->desc) }}"
+                            <input type="text" class="form-control form-control-user @error('desc') is-invalid @enderror" name="desc" value="{{ old('desc',$graphicsCard->desc) }}"
                                 required autocomplete="name" autofocus id="exampleInputName"
                                 placeholder="Mô tả">
 
@@ -92,14 +92,14 @@
                             @enderror
                         </div>
 
-                        <input type="hidden" name="status" value="{{$hardDriver->status}}"/>
+                        <input type="hidden" name="status" value="{{$graphicsCard->status}}"/>
 
                         <hr>
 
                         <div class="">
                             <div class="">
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    {{ __('Update cpus') }}
+                                    {{ __('Update rams') }}
                                 </button>
                             </div>
                         </div>

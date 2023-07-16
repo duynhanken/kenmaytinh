@@ -528,7 +528,8 @@ Session::put('error',null);
                     <div class="row product-grid-4">
                         @foreach ($list_product ?? '' as $product)
                             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
-
+                                <form action="{{ route('add-to-cart', $product->id) }}" method="GET">
+                                    @csrf
                                 <div class="product-cart-wrap mb-30">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
@@ -550,7 +551,8 @@ Session::put('error',null);
                                             <h2><a
                                                     href="{{ route('get-client-productDetail', $product->id) }}">{{ $product->name }}</a>
                                             </h2>
-
+                                            <input type="hidden" name="quatity" value="1"
+                                            min="1">
                                             <div class="product-price">
                                                 <span class=""><?php echo number_format($product->out_price); ?> đ</span>
                                                 {{-- <span class="old-price">$245.8</span> --}}
@@ -560,14 +562,15 @@ Session::put('error',null);
                                             </div>
                                             <div class="product-action-1 show">
 
-                                                <a aria-label="Add To Cart" class="action-btn hover-up"
-                                                    href="{{ route('add-to-cart', $product->id) }}"><i
-                                                        class="fi-rs-shopping-bag-add"></i></a>
+                                                <button aria-label="Add To Cart"
+                                                    class="action-btn hover-up"><i
+                                                        class="fi-rs-shopping-bag-add"></i></button>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
+                                </form>
                             </div>
                         @endforeach
                         <!--End product-grid-4-->

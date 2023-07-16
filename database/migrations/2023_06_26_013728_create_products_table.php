@@ -21,10 +21,8 @@ return new class extends Migration
             $table->foreignId('ram_id')->nullable()->constrained();
             $table->foreignId('cpu_id')->nullable()->constrained();
             $table->foreignId('hard_driver_id')->nullable()->constrained();
-            $table->foreignId('graphics_id')->nullable()->constrained();
-            $table->foreignId('maiboard_id')->nullable()->constrained();
-
-            $table->foreignId('brand_id')->nullable()->constrained();
+            $table->foreignId('graphics_card_id')->nullable()->constrained();
+            $table->foreignId('main_board_id')->nullable()->constrained();
             $table->text('image')->nullable();
             $table->longText('desc')->nullable();
             $table->bigInteger('quantity')->default(0);

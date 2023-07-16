@@ -24,6 +24,10 @@ class RamStoreRequest extends FormRequest
         return [
             'name' => ['required'],
             'slug' => ['required'],
+            'capacity' => ['required'],
+            'bus' => ['required'],
+            'bandwidth' => ['required'],
+            'numberofpins' => ['required'],
             'desc' => ['required'],
             'status' => ['required'],
         ];

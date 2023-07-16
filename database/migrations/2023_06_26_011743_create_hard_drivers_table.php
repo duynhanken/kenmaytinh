@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->unsigned();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('Gate')->nullable();
+            $table->string('gate')->nullable();
             $table->string('readingSpeed')->nullable();
             $table->string('electricUsed')->nullable();
             $table->longText('desc')->nullable();

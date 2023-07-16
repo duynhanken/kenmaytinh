@@ -68,6 +68,10 @@
             ?>
                 Đã Xác Nhận 
             <?php }
+             else if($bill->status == 4)
+            {
+                echo 'Đơn hàng đang được vận chuyển';
+            }
             else if($bill->status == 3)
             {
                 echo 'Thành Công';

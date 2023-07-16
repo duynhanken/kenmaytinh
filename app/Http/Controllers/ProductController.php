@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Models\Brand;
 use App\Models\Cpu;
+use App\Models\GraphicsCard;
 use App\Models\HardDriver;
+use App\Models\MainBoard;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Ram;
@@ -40,10 +42,12 @@ class ProductController extends Controller
         $brands = Brand::where('status',1)->get();
         $rams = Ram::where('status',1)->get();
         $cpus = Cpu::where('status',1)->get();
+        $mainBoards = MainBoard::where('status',1)->get();
+        $graphics = GraphicsCard::where('status',1)->get();
         $harddrives = HardDriver::where('status',1)->get();
 
 
-        return view('admin.products.create',compact('brands','rams','cpus','harddrives'));
+        return view('admin.products.create',compact('brands','rams','cpus','harddrives','mainBoards','graphics'));
     }
 
     /**
@@ -58,11 +62,23 @@ class ProductController extends Controller
         $products['ram_id']= $request->ram_id;
         $products['cpu_id']= $request->cpu_id;
         $products['hard_driver_id']= $request->hard_driver_id;
+        $products['graphics_card_id']= $request->graphics_card_id;
+        $products['main_board_id']= $request->main_board_id;
         $products['slug']=Str::slug($request->slug);
         $products['desc']= $request->desc;
         $products['image'] = $path;
         $products['out_price']= $request->out_price;
         $products['status'] = $request->status;
+        $product = Product::where('slug',$products['slug'])->first();
+       if(isset( $product))
+        {
+            return redirect()->back()->with('message','Slug đã tồn tại, mời bạn đổi lại');
+        }
+        else{
+            $products['slug']=Str::slug($request->slug);
+        }
+     
+
         $products->save();
         return redirect()->route('product-list')->with('message','Create Product Successfully');   
     }
@@ -84,7 +100,9 @@ class ProductController extends Controller
         $list_rams = Ram::where('status',1)->get();
         $list_cpus = Cpu::where('status',1)->get();
         $list_harddrives = HardDriver::where('status',1)->get();
-        return view('admin.products.edit',compact('product','list_brand','list_rams','list_cpus','list_harddrives'));
+        $list_graphics_card = GraphicsCard::where('status',1)->get();
+        $list_main_board = MainBoard::where('status',1)->get();
+        return view('admin.products.edit',compact('product','list_brand','list_rams','list_cpus','list_harddrives','list_graphics_card','list_main_board'));
     }
 
     /**
@@ -94,12 +112,15 @@ class ProductController extends Controller
     {
         $product['name']= $request->name;
         $product['brand_id']= $request->brand_id;
-        $products['ram_id']= $request->ram_id;
-        $products['cpu_id']= $request->cpu_id;
-        $products['hard_driver_id']= $request->hard_driver_id;
+        $product['ram_id']= $request->ram_id;
+        $product['cpu_id']= $request->cpu_id;
+        $product['hard_driver_id']= $request->hard_driver_id;
+        $product['graphics_card_id']= $request->graphics_card_id;
+      
+        $product['main_board_id']= $request->main_board_id;
         $product['slug']=Str::slug($request->slug);
         $product['desc']= $request->desc;
-
+        
         if($oldImage = $product->image)
         {
             Storage::disk('public')->delete($oldImage);
@@ -112,6 +133,7 @@ class ProductController extends Controller
       
         $product['out_price']= $request->out_price;
         $product['status'] = $request->status;
+      
         $product->save();
         return redirect()->route('product-list')->with('message','Update Product Successfully');
     }

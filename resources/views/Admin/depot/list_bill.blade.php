@@ -41,7 +41,7 @@
 		</tbody>
 		 
     </table>
-    {{$dathanhtoan->links()}}
+   
   </div>
     <div id="chuathanhtoan" class="tab-pane fade">
       <h3>Chưa Thanh Toán</h3>
@@ -71,7 +71,7 @@
 		</tbody>
 		 
     </table>
-    {{$chuathanhtoan->links()}}
+   
   </div>
     <div id="dahuy" class="tab-pane fade">
       <h3>Đã Hủy</h3>
@@ -103,7 +103,7 @@
 			</tbody>
 			
 		</table>
-    {{$dahuy->links()}}
+   
 
 		</div>
   </div>

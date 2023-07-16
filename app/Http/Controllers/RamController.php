@@ -42,6 +42,10 @@ class RamController extends Controller
         $rams = new Ram();
 
         $rams['name'] = $request->name;
+        $rams['capacity'] = $request->capacity;
+        $rams['bus'] = $request->bus;
+        $rams['bandwidth'] = $request->bandwidth;
+        $rams['numberofpins'] = $request->numberofpins;
         $rams['desc'] = $request->desc;
         $rams['slug'] = Str::slug($request->name,'-');
         $rams['status'] = $request->status;
@@ -73,6 +77,10 @@ class RamController extends Controller
     public function update(RamStoreRequest $request, Ram $ram)
     {
         $ram['name'] = $request->name;
+        $ram['capacity'] = $request->capacity;
+        $ram['bus'] = $request->bus;
+        $ram['bandwidth'] = $request->bandwidth;
+        $ram['numberofpins'] = $request->numberofpins;
         $ram['desc']=$request->desc;
         $ram['slug'] = Str::slug($request->name,'-');
         $ram['status']= $request->status;

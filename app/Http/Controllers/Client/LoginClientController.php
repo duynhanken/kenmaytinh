@@ -39,7 +39,7 @@ class LoginClientController extends Controller
                     'customer_id' => $id_customer,
                     'product_id' => $id,
                     'price' => $price,
-                    'quantity' => $quantity
+                    'quantity' => $quantity,
                 ]);
             }
     

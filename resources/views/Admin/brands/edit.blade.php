@@ -23,7 +23,7 @@
                         @method('PUT')
     
                         <div class="form-group">
-    
+                            <h6>Tên Nhãn Hiệu</h6>
                             <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name',$brand->name) }}"
                                 required autocomplete="name" autofocus id="exampleInputName"
                                 placeholder="brand -name">
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group">
-    
+                            <h6>Slug</h6>
                             <input type="text" class="form-control form-control-user @error('slug') is-invalid @enderror" name="slug" value="{{ old('slug',$brand->slug) }}"
                                 required autocomplete="slug" autofocus id="exampleInputName"
                                 placeholder="slug">
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="form-group">
-                                            
+                            <h6>Hình Ảnh</h6>
                             <img with="50" height="50" src="{{"/storage/$brand->image"}}" alt="">
                             <input type="file" class="form-control form-control-user @error('image') is-invalid @enderror" name="image"
                                 required autocomplete="name" autofocus id="exampleInputName"
@@ -66,7 +66,7 @@
 
 
                         <div class="form-group">
-
+                            <h6>Mô tả</h6>
                             <input type="text" class="form-control form-control-user @error('desc') is-invalid @enderror" name="desc" value="{{ old('desc',$brand->desc) }}"
                                 required autocomplete="name" autofocus id="exampleInputName"
                                 placeholder="Mô tả">

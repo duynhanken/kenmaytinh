@@ -88,7 +88,7 @@ class CartClientController extends Controller
             ];
         }
       
-
+    
         session()->put('cart',$cart);
 
        
@@ -142,7 +142,8 @@ class CartClientController extends Controller
         $bill->total_price = 0;
         $bill->price_checkout = 0;
         $bill->date_create = date('Y-m-d H:i:s');
-        $bill->status = 1;
+        $bill->status = 0;
+        
         $bill->save();
 
         $cart = Cart::where('customer_id',$id_customer)->get();
@@ -251,7 +252,8 @@ class CartClientController extends Controller
         $bill->phone = $request->phone;
         $bill->address = $request->address;
         $bill->desc = $request->desc;
-        $bill->status = 1;
+        $bill->status = 0;
+        
         $bill->save();
 
        
@@ -350,6 +352,19 @@ class CartClientController extends Controller
         $bill = Bill::findOrFail($id);
         $bill->status = 1;
         $bill->save();
+        foreach($bill->detail_bill as $detail_bill)
+        {
+            $product = Product::findOrFail($detail_bill->product_id);
+            if($detail_bill->quantity <= $product->quantity)
+            {
+                $product->quantity = $product->quantity - $detail_bill->quantity;
+                $product->save(); 
+                return redirect()->back();
+            }else{
+                return redirect()->back()->with('message','Sản phẩm của bạn đã hết hàng ! Xin lỗi vì sự bất tiện này.');
+            }
+           
+        }
        
         return redirect()->back();
     }

@@ -44,7 +44,7 @@
                                             <input type="hidden" name="product_id" value="{{$product->id}}">
                                             <input type="hidden" name="product_number" value="{{$product->number}}">
     
-                                            <h2 class="title-detail" name= "product_name">{{$product->name}}</h2>
+                                            <h2 class="title-detail" name= "product_name" style="word-wrap:break-word">{{$product->name}}</h2>
                                             <div class="product-detail-rating">
                                                 <div class="pro-details-brand">
                                                     <span> Thương hiệu: <a href="shop.html">{{$product->brand->name}}</a></span>
@@ -117,7 +117,7 @@
                                             <input type="hidden" name="product_id" value="{{$product->id}}">
                                             <input type="hidden" name="product_number" value="{{$product->number}}">
     
-                                            <h2 class="title-detail" name= "product_name">{{$product->name}}</h2>
+                                            <h2 class="title-detail" name= "product_name" style="word-wrap:break-word">{{$product->name}}</h2>
                                             <div class="product-detail-rating">
                                                 <div class="pro-details-brand">
                                                     <span> Thương hiệu: <a href="shop.html">{{$product->brand->name}}</a></span>

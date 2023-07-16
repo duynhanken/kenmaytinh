@@ -23,7 +23,7 @@
                         @method('PUT')
     
                         <div class="form-group">
-                            <h6>Name</h6>
+                            <h6>Tên CPU</h6>
                             <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name',$cpu->name) }}"
                                 required autocomplete="name" autofocus id="exampleInputName"
                                 placeholder="cpu -name">
@@ -40,8 +40,65 @@
 
 
                         <div class="form-group">
+                            <h6>Hãng sản xuất CPU</h6>
+                            <input type="text" class="form-control form-control-user @error('producer') is-invalid @enderror" name="producer" value="{{ old('producer',$cpu->producer) }}"
+                                required autocomplete="name" autofocus id="exampleInputName"
+                                placeholder="Cpu name">
 
-                            <h6>Description</h6>
+                            @error('producer')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <h6>Tốc độ xử lý của CPU</h6>    
+                            <input type="text" class="form-control form-control-user @error('cpuspeed') is-invalid @enderror" name="cpuspeed" value="{{ old('cpuspeed',$cpu->cpuspeed) }}"
+                                required autocomplete="cpuspeed" autofocus id="exampleInputName"
+                                placeholder="Cpu name">
+
+                            @error('cpuspeed')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <h6>Dung lượng của CPU</h6>
+                            <input type="text" class="form-control form-control-user @error('width') is-invalid @enderror" name="width" value="{{ old('width',$cpu->width) }}"
+                                required autocomplete="width" autofocus id="exampleInputName"
+                                placeholder="Cpu width">
+
+                            @error('width')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <h6>Bộ nhớ Cache của CPU</h6>
+                            <input type="text" class="form-control form-control-user @error('cache') is-invalid @enderror" name="cache" value="{{ old('cache',$cpu->cache) }}"
+                                required autocomplete="name" autofocus id="exampleInputName"
+                                placeholder="Cpu cache">
+
+                            @error('cache')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <h6>Mô tả CPU</h6>
 
                             <input type="text" class="form-control form-control-user @error('desc') is-invalid @enderror" name="desc" value="{{ old('desc',$cpu->desc) }}"
                                 required autocomplete="name" autofocus id="exampleInputName"

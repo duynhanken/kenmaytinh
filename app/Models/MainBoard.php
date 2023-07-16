@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+
 
 class MainBoard extends Model
 {
     use HasFactory;
+
+    use Sluggable;
+
     public $timestamps  =false;
     protected $fillable = [
         'name',
@@ -19,6 +24,16 @@ class MainBoard extends Model
         'manufacturer',
         'status',
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+
 
     public function product()
     {

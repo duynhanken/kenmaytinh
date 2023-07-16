@@ -60,6 +60,10 @@
                                                 {
                                                     echo 'Thành Công';
                                                 }
+                                                else if($bill->status == 4)
+                                                {
+                                                    echo 'Đang giao hàng';
+                                                }
                                                 else if($bill->status == -1)
                                                 {
                                                     echo 'Đã Hủy';

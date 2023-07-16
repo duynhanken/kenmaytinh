@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Product extends Model
 {
     use HasFactory;
+
     public $timestamps  =false;
     protected $fillable = [
         'number',
@@ -17,6 +19,8 @@ class Product extends Model
         'ram_id',
         'cpu_id',
         'hard_driver_id',
+        'graphics_card_id',
+        'main_board_id',
         'image',
         'desc',
         'quantity',
@@ -25,6 +29,8 @@ class Product extends Model
         'status',
     ];
 
+
+   
     public function Brand()
     {
         return $this->belongsTo(Brand::class);

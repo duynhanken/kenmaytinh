@@ -122,20 +122,29 @@
                             <input type="hidden" name="id_bill" value="{{$bill->id}}">
                             <input type="hidden" name="tong_soluong_sp" value="2"/>
                             <div class="table-responsive order_table text-center">
-                                @foreach($bill->detail_bill as $detail_bill)
+                               
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                           
                                             <th colspan="2">Sản Phẩm</th>
                                             <th>Số Lượng</th>
                                             <th>Giá Tiền</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($bill->detail_bill as $detail_bill)
                                         <tr>
                                             <td class="image product-thumbnail"><img src="{{ '/storage/'.$detail_bill->product->image }}" alt="#"></td>
                                             <td>
-                                                <h5><a href=""> <p id="ten_sp_gio_hang">{{$detail_bill->product->name}}</p></a></h5>
+                                                <h5><a href=""> <p id="ten_sp_gio_hang" style="
+                                                    display: -webkit-box;
+                                                    max-width: 200px;
+                                                    -webkit-line-clamp: 1;
+                                                    -webkit-box-orient: vertical;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;
+                                                ">{{$detail_bill->product->name}}</p></a></h5>
                                             </td>
                                             <td>
                                                 <p id="sl_sp_giohang">
@@ -144,10 +153,10 @@
                                             </td>
                                             <td><p id="gia_sp_gio_hang"><?php echo number_format($detail_bill->price).'đ' ?></p></td>
                                         </tr>
-                                        
+                                        @endforeach
                                     </tbody>
                                 </table>
-                                @endforeach
+                               
                                 <span>
                                     <button type="submit" class="btn btn-outline-secondary btn-block">Cập Nhật Giỏ Hàng</button>
                                 </span>

@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Brand extends Model
 {
     use HasFactory;
+   
+
     public $timestamps  =false;
     protected $fillable = [
         'name',
@@ -16,6 +20,8 @@ class Brand extends Model
         'desc',
         'status',
     ];
+
+   
 
     public function product()
     {
