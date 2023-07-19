@@ -206,9 +206,7 @@ Route::group(['middleware' => 'CheckAdminLogin','prefix' => 'admin','namespace' 
 
 //Client
 
-Route::get('/', function () {
-    return view('client/index');
-});
+Route::get('/',[HomeClientController::class,'getClientIndex']);
 
 Route::group(['namespace' => 'client'],function(){
     //Login

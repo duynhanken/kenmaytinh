@@ -1,28 +1,25 @@
 @extends('client.index')
-
-
 @section('content')
-
-
 
 <main class="main">
 	<div class="page-header breadcrumb-wrap">
 		<div class="container">
 			<div class="breadcrumb">
 				<a href="{{route('get-client-home')}}" rel="nofollow">Home</a>                    
-				<span></span> Register
+				<span></span> Đăng ký
 			</div>
 		</div>
 	</div>
-	<div class="container">
-        @if (session()->has('message'))
+
+	<div>
+        @if (session()->has('message_ac'))
             <div class="alert alert-success"
                 style="
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 ">
-                {{ session('message') }}
+                {{ session('message_ac') }}
             </div>
         @endif
     </div>
@@ -36,7 +33,7 @@
 						<div class="login_wrap widget-taber-content p-30 background-white border-radius-5">
 								<div class="padding_eight_all bg-white">
 									<div class="heading_s1">
-										<h3 class="mb-30">Create an Account</h3>
+										<h3 class="mb-30">Tạo Tài Khoản</h3>
 									</div>                                        
 									<form method="post" action="{{route('post-add-customer')}}">
 										@csrf

@@ -36,8 +36,8 @@
                                                         <select name="sort_by" onchange="this.form.submit();" class="sorting">
                                                             <option {{request('sort_by') == 'name_ascending'? 'selected':''}} value="name_ascending"> Name A-Z</option>
                                                             <option {{request('sort_by') == 'name_descending'? 'selected':''}} value="name_descending"> Name Z-A</option>
-                                                            <option {{request('sort_by') == 'price_ascending'? 'selected':''}} value="price_ascending"> Price Ascending</option>
-                                                            <option {{request('sort_by') == 'price_descending'? 'selected':''}} value="price_descending"> Price Descending</option>
+                                                            <option {{request('sort_by') == 'price_ascending'? 'selected':''}} value="price_ascending"> Giá tăng dần</option>
+                                                            <option {{request('sort_by') == 'price_descending'? 'selected':''}} value="price_descending"> Giá giảm dần</option>
                                                         </select>
                                                         
                                                     </div>
@@ -70,10 +70,82 @@
                                 </div>
                             </div> --}}
                         </div>
+                        <?php
+                        if(Auth::guard('customer')->check())
+                        {
+                            ?>
+                       
+                                <div class="row product-grid-4">
+        
+                                    @foreach ($list_product ?? '' as $product)
+                                        
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
+                                                <form action="{{ route('add-to-cart-lg', $product->id) }}" method="POST">
+                                                    @csrf
+                                                <div class="product-cart-wrap mb-30">
+                                                    <div class="product-img-action-wrap">
+                                                        <div class="product-img product-img-zoom">
+                                                            <a href="{{ route('get-client-productDetail', $product->id) }}">
+                                                                <img class="default-img"
+                                                                    src="{{ "/storage/$product->image" }}" alt="">
+                                                                <img class="hover-img" src="{{ "/storage/$product->image" }}"
+                                                                    alt="">
+                                                            </a>
+                                                        </div>
+        
+                                                        <div class="product-badges product-badges-position product-badges-mrg">
+        
+                                                        </div>
+                                                        <div class="product-content-wrap">
+                                                            {{-- <div class="product-category">
+                                                        <a href="shop.html">Clothing</a>
+                                                    </div> --}}
+                                                            <h2><a
+                                                                    href="{{ route('get-client-productDetail', $product->id) }}">{{ $product->name }}</a>
+                                                            </h2>
+        
+                                                            <input type="hidden" name="product_qty" value="1"
+                                                                min="1">
+        
+        
+                                                            <div class="product-price">
+                                                                <span class=""><?php echo number_format($product->out_price); ?> đ</span>
+                                                                {{-- <span class="old-price">$245.8</span> --}}
+                                                            </div>
+                                                            <div class="product-price">
+                                                                <span>{{ $product->ram->name }}</span>
+                                                            </div>
+                                                            <div class="product-action-1 show">
+        
+                                                                <button aria-label="Add To Cart"
+                                                                    class="action-btn hover-up"><i
+                                                                        class="fi-rs-shopping-bag-add"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+        
+                                                </div>
+                                            </form>
+                                            </div>
+                                                
+                                        
+                                    @endforeach
+                                </div>
+                            
+        
+                            <!--End product-grid-4-->
+                      
+                    <?php
+                        }else
+                        {
+                            ?>
+        
+                    
                             <div class="row product-grid-4">
                                 @foreach ($list_product ?? '' as $product)
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
-                
+                                        <form action="{{ route('add-to-cart', $product->id) }}" method="GET">
+                                            @csrf
                                         <div class="product-cart-wrap mb-30">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
@@ -84,44 +156,46 @@
                                                             alt="">
                                                     </a>
                                                 </div>
-                
+        
                                                 <div class="product-badges product-badges-position product-badges-mrg">
-                
+        
                                                 </div>
-                                             
+                                                <div class="product-content-wrap">
+                                                    {{-- <div class="product-category">
+                                                            <a href="shop.html">Clothing</a>
+                                                        </div> --}}
+                                                    <h2><a
+                                                            href="{{ route('get-client-productDetail', $product->id) }}">{{ $product->name }}</a>
+                                                    </h2>
+                                                    <input type="hidden" name="quatity" value="1"
+                                                    min="1">
+                                                    <div class="product-price">
+                                                        <span class=""><?php echo number_format($product->out_price); ?> đ</span>
+                                                        {{-- <span class="old-price">$245.8</span> --}}
+                                                    </div>
+                                                    <div class="product-price">
+                                                        <span>{{ $product->ram->name }}</span>
+                                                    </div>
+                                                    <div class="product-action-1 show">
+        
+                                                        <button aria-label="Add To Cart"
+                                                            class="action-btn hover-up"><i
+                                                                class="fi-rs-shopping-bag-add"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="product-content-wrap">
-                                                {{-- <div class="product-category">
-                                                        <a href="shop.html">Clothing</a>
-                                                    </div> --}}
-                                                <h2><a
-                                                        href="{{ route('get-client-productDetail', $product->id) }}">{{ $product->name }}</a>
-                                                </h2>
-            
-                                                <div class="product-price">
-                                                    <span class=""><?php echo number_format($product->out_price); ?> đ</span>
-                                                    {{-- <span class="old-price">$245.8</span> --}}
-                                                </div>
-                                                <div class="">
-                                                    <span>RAM: {{ $product->ram->name }}</span>
-                                                </div>
-                                                <div class="product-action-1 show">
-            
-                                                    <a aria-label="Add To Cart" class="action-btn hover-up"
-                                                        href="{{ route('add-to-cart', $product->id) }}"><i
-                                                            class="fi-rs-shopping-bag-add"></i></a>
-                                                </div>
-                                            </div>
-                
+        
                                         </div>
-                
+                                        
+                                        </form>
                                     </div>
-                                    
                                 @endforeach
-                
-                                
-                                <!--End product-grid-4-->
+        
                             </div>
+                        <?php
+                        }
+                        ?>
+                           
                             <?php try{ ?>{{$list_product->links()}}<?php } catch(Exception $e) {} ?>
                         </div>
                         
@@ -259,13 +333,13 @@
         step: 100000,
         values: [{{$min_price}}, {{$max_price}}],
         slide: function( event, ui ) {
-            amountprice.val(" VNĐ" + ui.values[0] + " - VNĐ " + ui.values[1]);
+            amountprice.val(" đ " + ui.values[0] + " - đ " + ui.values[1]);
             star_price.val(ui.values[0]);
             end_price.val(ui.values[1]);
         }
         });
-        amountprice.val("VNĐ" + sliderrange.slider("values", 0) +
-        " - VNĐ" + sliderrange.slider("values", 1));
+        amountprice.val("đ " + sliderrange.slider("values", 0) +
+        " - đ " + sliderrange.slider("values", 1));
         
   } );
 

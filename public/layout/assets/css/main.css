@@ -5641,6 +5641,14 @@ h6.post-title {
 
 .cart-dropdown-wrap ul li .shopping-cart-title {
   margin: 6px 0 0;
+    display: -webkit-box;
+    max-width: 400px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+  
 }
 
 .cart-dropdown-wrap ul li .shopping-cart-title h4 {

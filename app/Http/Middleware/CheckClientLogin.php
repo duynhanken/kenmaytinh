@@ -25,14 +25,14 @@ class CheckClientLogin
                 return $next($request);
             }
             else{
-                Session::put('error','Ban phai dang nhap de thuc hien chuc nang nay');
+                Session::put('error','Bạn phải đăng nhập để thực hiện chức năng này');
                 Auth::guard('customer')->logout();
-                return redirect()->route('get-client-home');
+                return redirect()->route('get-login-client');
             }
         }
         else{
-            Session::put('error','Ban phai dang nhap de thuc hien chuc nang nay');
-            return redirect()->route('get-client-home');
+            Session::put('error','Bạn phải đăng nhập để thực hiện chức năng này');
+            return redirect()->route('get-login-client');
         }
        
     }

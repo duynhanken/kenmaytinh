@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CustomerStoreRequest;
+use App\Models\Cart;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,47 +16,7 @@ use Laravel\Socialite\Facades\Socialite;
 class CustomerClientController extends Controller
 {
 
-    public function redirect($provider)
-    {
-        return Socialite::driver($provider)->redirect();
-    }
-
-    public function callback($provider)
-    {
-
-        try{
-            $SocialUser = Socialite::driver($provider)->user();
-            if(Customer::where('email',$SocialUser->getEmail())->exists()){
-                return redirect('/login')->withErrors(['email' => 'This email users different method to login']);
-            }
-
-            $user = Customer::where([
-                'provider' => $provider,
-                'provider_id' => $SocialUser->id,
-            ])->first();
-
-            if(!$user){
-                $user = Customer::create([
-                    'name' => $SocialUser->getName(),
-                    'email' => $SocialUser->getEmail(),
-                    'provider' => $provider,
-                    'provider_id' => $SocialUser->getId(),
-                    'provider_token' => $SocialUser->token,
-                ]);
-                $user->sendEmailVerificationNotification();
-            }
-            Auth::login($user);
-     
-            return redirect('/dashboard');
-        
-        } catch(\Exception $e){
-            return redirect('/login');
-        }
-
- 
-        
-       
-    }
+   
 
     public function postAdd(Request $request)
     {
@@ -75,16 +36,20 @@ class CustomerClientController extends Controller
         $customer['address'] = $request->address;
         $customer['password'] = Hash::make($request->password);
         $customer['status'] = 1;
+       
         $customer->save();
 
-       
-
-        return view('client.home.account')->with('message','Tạo Tài Khoản Thành Công');
+        return view('client.home.login')->with('message_ac','Tạo Tài Khoản Thành Công');
     }
 
     public function viewUpdateAccount(Customer $customer)
     {
-        return view('client.home.account_detail',compact('customer'));
+        if(Auth::guard('customer')->check()){
+            $id_customer = Auth::guard('customer')->user()->id;
+            $cart_count = Cart::where('customer_id',$id_customer)->count();
+            $all_cart = Cart::where('customer_id',$id_customer)->get();
+        }
+        return view('client.home.account_detail',compact('customer','all_cart','cart_count'));
     }
 
     public function updateAccount(CustomerStoreRequest $request, Customer $customer)

@@ -110,9 +110,13 @@ class CartClientController extends Controller
 
     public function viewtoCart()
     {
-        $id_customer = Auth::guard('customer')->user()->id;
-        $all_cart = Cart::where([['customer_id',$id_customer]])->get();
-        return view('client.cart.cartproduct',compact('all_cart'));
+        if (Auth::guard('customer')->check()) {
+            $id_customer = Auth::guard('customer')->user()->id;
+            $cart_count = Cart::where('customer_id',$id_customer)->count();
+            $all_cart = Cart::where('customer_id',$id_customer)->get();
+        
+        return view('client.cart.cartproduct',compact('all_cart','cart_count'));
+        }
     }
 
 
@@ -147,6 +151,7 @@ class CartClientController extends Controller
         $bill->save();
 
         $cart = Cart::where('customer_id',$id_customer)->get();
+       
 
         foreach($cart as $item)
         {
@@ -159,20 +164,23 @@ class CartClientController extends Controller
            
             
             $product = Product::find($item->product_id); 
-      
             
-            if($request->quanty <= $product->quantity)
+            $ct = "quanty_".$item->id;
+            
+            if($request->$ct <= $product->quantity)
             {
-                $item->quantity =$request->quanty;
+                $item->quantity = $request->$ct;
+                $item->save();
                 $detail_bill->quantity = $item->quantity;
             }
             else{
-                $item->quantity =  $request->quanty;
+                $item->quantity =  $product->quantity;
                 $item->save();
                 Session::put('message','Một số sản phẩm không còn đủ số lượng để cung cấp cho bạn. Xin lổi vì sự bất tiện này');
                 return redirect()->back();
                 
             }
+        
             
           
           
@@ -185,12 +193,13 @@ class CartClientController extends Controller
             $detail_bill->save();
 
             $bill->save();
-
         }
-
-        
-
-        return view('client.cart.cart',compact('bill'));
+        if (Auth::guard('customer')->check()) {
+            $id_customer = Auth::guard('customer')->user()->id;
+            $cart_count = Cart::where('customer_id',$id_customer)->count();
+            $all_cart = Cart::where('customer_id',$id_customer)->get();
+        }
+        return view('client.cart.cart',compact('bill','cart_count','all_cart'));
 
    }
 
@@ -235,7 +244,12 @@ class CartClientController extends Controller
         $bill = Bill::where([['id',$id_bill],['status',0]])->first();
         if(isset($bill))
         {
-            return view('client.cart.cart')->with('bill',$bill);    
+            if (Auth::guard('customer')->check()) {
+                $id_customer = Auth::guard('customer')->user()->id;
+                $cart_count = Cart::where('customer_id',$id_customer)->count();
+                $all_cart = Cart::where('customer_id',$id_customer)->get();
+            }
+            return view('client.cart.cart',compact('cart_count','all_cart'))->with('bill',$bill);    
         }
         return redirect()->route('get-client-home');
     }
@@ -252,7 +266,7 @@ class CartClientController extends Controller
         $bill->phone = $request->phone;
         $bill->address = $request->address;
         $bill->desc = $request->desc;
-        $bill->status = 0;
+        $bill->status = 1;
         
         $bill->save();
 
@@ -274,8 +288,12 @@ class CartClientController extends Controller
         $cart = Cart::where('customer_id',$id_customer)->get();
         Cart::destroy($cart);
 
-
-        return view('client.cart.success');
+        if (Auth::guard('customer')->check()) {
+            $id_customer = Auth::guard('customer')->user()->id;
+            $cart_count = Cart::where('customer_id',$id_customer)->count();
+            $all_cart = Cart::where('customer_id',$id_customer)->get();
+        }
+        return view('client.cart.success',compact('cart_count','all_cart'));
     }
 
     public function updateVoucher(Request $request)
@@ -317,20 +335,30 @@ class CartClientController extends Controller
 
     public function delivery()
     {
+        if(Auth::guard('customer')->check()){
+            $id_customer = Auth::guard('customer')->user()->id;
+            $cart_count = Cart::where('customer_id',$id_customer)->count();
+            $all_cart = Cart::where('customer_id',$id_customer)->get();
+        }
         $id_customer = Auth::guard('customer')->user()->id;
         $bill = Bill::where([['customer_id',$id_customer]])->get();
         if(isset($bill))
         {
-            return view('client.bill.delivery')->with('bill',$bill);    
+            return view('client.bill.delivery')->with('bill',$bill)->with('cart_count',$cart_count)->with('all_cart',$all_cart);    
         }
         return redirect()->route('get-client-home');
     }
 
     public function viewDelivery($id)
     {
+        if(Auth::guard('customer')->check()){
+            $id_customer = Auth::guard('customer')->user()->id;
+            $cart_count = Cart::where('customer_id',$id_customer)->count();
+            $all_cart = Cart::where('customer_id',$id_customer)->get();
+        }
         $id_customer = Auth::guard('customer')->user()->id;
         $bill = Bill::where([['id',$id],['customer_id',$id_customer]])->first();
-        return view('client.bill.detail')->with('bill',$bill);
+        return view('client.bill.detail')->with('bill',$bill)->with('cart_count',$cart_count)->with('all_cart',$all_cart);
     }
 
     public function deleteDelivery($id)
@@ -368,5 +396,7 @@ class CartClientController extends Controller
        
         return redirect()->back();
     }
+
+   
 
 }

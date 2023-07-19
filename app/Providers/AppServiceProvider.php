@@ -45,6 +45,15 @@ class AppServiceProvider extends ServiceProvider
         $all_ram = Ram::where('status','1')->get();
         View::share('all_ram',$all_ram);
 
+        // if(Auth::guard('customer')->check())
+        // {
+        //     $id_customer = Auth::guard('customer')->user()->id;
+        //     $cart_count = Cart::where('customer_id',$id_customer)->count();
+        //     View::share('cart_count',$cart_count);
+        //     $all_cart = Cart::where('customer_id',$id_customer)->get();
+        //     View::share('all_cart',$all_cart);
+        // }
+      
         
     }
 }

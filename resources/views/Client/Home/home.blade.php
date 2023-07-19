@@ -114,13 +114,13 @@ Session::put('error',null);
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="{{ route('view-to-cart') }}">
                                         <img alt="Surfside Media" src="{!! asset('layout/assets/imgs/theme/icons/icon-cart.svg') !!}">
-                                        {{-- <span class="pro-count blue">{{ $cart_count }}</span> --}}
+                                        <span class="pro-count blue">{{ $cart_count }}</span>
                                     </a>
 
 
 
 
-                                    {{-- <div class="cart-dropdown-wrap cart-dropdown-hm2">
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                         @foreach ($all_cart as $cart)
                                             <ul>
                                                 <li>
@@ -151,7 +151,7 @@ Session::put('error',null);
                                                
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
 
 
                                 </div>
@@ -267,68 +267,7 @@ Session::put('error',null);
                     </div>
 
                     <!-- giỏ hàng -->
-                    <div class="header-action-right d-block d-lg-none">
-                        <div class="header-action-2">
-                            <div class="header-action-icon-2">
-                                <a href="shop-wishlist.php">
-                                    <img alt="Surfside Media" src="assets/imgs/theme/icons/icon-heart.svg">
-                                    <span class="pro-count white">4</span>
-                                </a>
-                            </div>
-                            <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="cart.html">
-                                    <img alt="Surfside Media" src="assets/imgs/theme/icons/icon-cart.svg">
-                                    <span class="pro-count white">2</span>
-                                </a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                    <ul>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="product-details.html"><img alt="Surfside Media"
-                                                        src="assets/imgs/shop/thumbnail-3.jpg"></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="product-details.html">Plain Striola Shirts</a></h4>
-                                                <h3><span>1 × </span>$800.00</h3>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="product-details.html"><img alt="Surfside Media"
-                                                        src="assets/imgs/shop/thumbnail-4.jpg"></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="product-details.html">Macbook Pro 2022</a></h4>
-                                                <h3><span>1 × </span>$3500.00</h3>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="shopping-cart-footer">
-                                        <div class="shopping-cart-total">
-                                            <h4>Total <span>$383.00</span></h4>
-                                        </div>
-                                        <div class="shopping-cart-button">
-                                            <a href="cart.html">View cart</a>
-                                            <a href="shop-checkout.php">Checkout</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="header-action-icon-2 d-block d-lg-none">
-                                <div class="burger-icon burger-icon-white">
-                                    <span class="burger-icon-top"></span>
-                                    <span class="burger-icon-mid"></span>
-                                    <span class="burger-icon-bottom"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -358,51 +297,34 @@ Session::put('error',null);
                 </div>
             @endif
         </div>
-        <!-- <section class="home-slider position-relative pt-50">
+         <section class="home-slider position-relative pt-50" style="
+         background-color: aliceblue;
+     ">
             <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
                 <div class="single-hero-slider single-animation-wrap">
                     <div class="container">
                         <div class="row align-items-center slider-animated-1">
                             <div class="col-lg-5 col-md-6">
                                 <div class="hero-slider-content-2">
-                                    <h4 class="animated">Trade-in offer</h4>
-                                    <h2 class="animated fw-900">Supper value deals</h2>
+                                    <h4 class="animated">Chào mừng bạn đến với</h4>
+                                    <h2 class="animated fw-900">website chúng tôi</h2>
                                     <h1 class="animated fw-900 text-brand">On all products</h1>
-                                    <p class="animated">Save more with coupons & up to 70% off</p>
-                                    <a class="animated btn btn-brush btn-brush-3" href="product-details.html"> Shop Now </a>
+                                  
+                                    <a class="animated btn btn-brush btn-brush-3" href="{{route('get-client-product')}}"> Shop Now </a>
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-6">
                                 <div class="single-slider-img single-slider-img-1">
-                                    <img class="animated slider-1-1" src="assets/imgs/slider/slider-1.png" alt="">
+                                    <img class="animated slider-1-1" src="{!! asset('layout/assets/imgs/hinhnen.jpg')!!}" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="single-hero-slider single-animation-wrap">
-                    <div class="container">
-                        <div class="row align-items-center slider-animated-1">
-                            <div class="col-lg-5 col-md-6">
-                                <div class="hero-slider-content-2">
-                                    <h4 class="animated">Hot promotions</h4>
-                                    <h2 class="animated fw-900">Fashion Trending</h2>
-                                    <h1 class="animated fw-900 text-7">Great Collection</h1>
-                                    <p class="animated">Save more with coupons & up to 20% off</p>
-                                    <a class="animated btn btn-brush btn-brush-2" href="product-details.html"> Discover Now </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-7 col-md-6">
-                                <div class="single-slider-img single-slider-img-1">
-                                    <img class="animated slider-1-2" src="assets/imgs/slider/slider-2.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
-            <div class="slider-arrow hero-slider-1-arrow"></div>
-        </section> -->
+            <div class="slider-arrow hero-slider-1-arrow"></div> 
+        </section> 
         {{-- Brand   --}}
         <section class="section-padding">
             <div class="container">
@@ -656,5 +578,6 @@ Session::put('error',null);
     <!-- Template  JS -->
     @vite(['public/layout/assets/js/main.js?v=3.3'])
     @vite(['public/layout/assets/js/shop.js?v=3.3'])
+    @vite(['public/layout/assets/js/moneyformat'])
 
 </html>

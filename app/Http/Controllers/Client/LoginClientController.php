@@ -12,6 +12,11 @@ class LoginClientController extends Controller
 
     public function getClientLogin()
     {
+        if(Auth::guard('customer')->check()){
+            $id_customer = Auth::guard('customer')->user()->id;
+            $cart_count = Cart::where('customer_id',$id_customer)->count();
+            $all_cart = Cart::where('customer_id',$id_customer)->get();
+        }
         return view('client.home.login');
     }
 

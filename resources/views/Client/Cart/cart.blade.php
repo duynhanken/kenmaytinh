@@ -148,7 +148,7 @@
                                             </td>
                                             <td>
                                                 <p id="sl_sp_giohang">
-                                                    <input type="number" value="{{$detail_bill->quantity}}" min="0" max="{{$detail_bill->product->quantity}}" name="quantity_{{$detail_bill->product->id}}" >
+                                                    <input type="number" value="{{$detail_bill->quantity}}" min="1" max="{{$detail_bill->product->quantity}}" name="quantity_{{$detail_bill->product->id}}" >
                                                 </p>
                                             </td>
                                             <td><p id="gia_sp_gio_hang"><?php echo number_format($detail_bill->price).'đ' ?></p></td>

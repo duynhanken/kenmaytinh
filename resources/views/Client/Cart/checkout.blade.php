@@ -27,7 +27,6 @@
                         @csrf
                         <input type="hidden" name="bill_id" value="{{$bill->id}}">
                         <div class="form-group">
-                            
                             <input required="" value="{{$bill->name}}" type="text" name="name" placeholder="First name *">
                         </div>
                         {{-- <div class="form-group">

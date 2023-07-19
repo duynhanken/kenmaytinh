@@ -65,6 +65,8 @@ export default defineConfig({
             'public/layout/slider/jqr_js.js',
             'public/layout/slider/jqr_ver.js',
 
+            'public/layout/assets/js/moneyformat',
+
         ],
             refresh: true,
         }),

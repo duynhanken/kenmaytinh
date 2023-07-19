@@ -11,34 +11,30 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeClientController extends Controller
 {
-    public function getClientIndex()
-    {
-        $list_product = Product::where([['status',1],['quantity','>',0]])->take(8)->get();
-        return view('client.home.index',compact('list_product'));
-    }
 
-    // public function getClientHomeIndex(){
-    //     $id_customer = Auth::guard('customer')->user()->id;
-    //     $all_cart = Cart::where('customer_id',$id_customer)->get();
-    //     $cart_count = Cart::where('customer_id',$id_customer)->count();
-    //     $list_product = Product::where([['status',1],['quantity','>',0]])->take(8)->get();
-    //     return view('client.home.index',compact('list_product','all_cart','cart_count'));
-    // }
 
     public function getClientHome()
     {
-        
-        // $id_customer = Auth::guard('customer')->user()->id;
-        // $all_cart = Cart::where('customer_id',$id_customer)->get();
-        // $cart_count = Cart::where('customer_id',$id_customer)->count();
-        $list_product = Product::where([['status',1],['quantity','>',0]])->take(8)->get();
-        return view('client.home.home',compact('list_product'));
+        if (Auth::guard('customer')->check()){
+            $id_customer = Auth::guard('customer')->user()->id;
+            $all_cart = Cart::where('customer_id',$id_customer)->get();
+            $cart_count = Cart::where('customer_id',$id_customer)->count();
+            $list_product = Product::where([['status',1],['quantity','>',0]])->orderBy('out_price','DESC')->take(8)->get();
+            return view('client.home.home',compact('list_product','all_cart','cart_count'));
+        }else{
+            $list_product = Product::where([['status',1],['quantity','>',0]])->orderBy('id','DESC')->take(8)->get();
+            return view('client.home.home',compact('list_product'));
+        }
     }
 
     public function getAccount()
     {
+        
         if (Auth::guard('customer')->check()) {
-            return redirect()->route('get-client-home');
+            $id_customer = Auth::guard('customer')->user()->id;
+            $cart_count = Cart::where('customer_id',$id_customer)->count();
+            $all_cart = Cart::where('customer_id',$id_customer)->get();
+            return redirect()->route('get-client-home',compact('all_cart','cart_count'));
         } else {
             return view('client.home.account');
         }

@@ -39,7 +39,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
-                                    <th scope="col">Subtotal</th>
+                                   
                                     <th scope="col">Remove</th>
                                 </tr>
                             </thead>
@@ -51,15 +51,16 @@
                                         <h5 class="product-name" name="name"><a href="product-details.html">{{$cart->product->name}}</a></h5>
                                         
                                     </td>
-                                    <td class="price" data-title="Price" name="price[]"><span>{{$cart->price}}</span></td>
+                                    <td class="price" data-title="Price" name="price[]"><span><?php echo number_format($cart->price); ?> đ </span></td>
                                     <td class="text-center" data-title="Stock">
-                                        
-                                            <input type="number" value="{{$cart->quantity}}" min="0"  name="quanty" >
+                                            <input type="hidden" name="id_cart" value="{{$cart->id}}">
+                                     
+                                            <input type="number" value="{{$cart->quantity}}" min="1" max="{{$cart->product->quantity}}"  name="quanty_{{$cart->id}}" >
                                            
                                     </td>
-                                    <td class="text-right" data-title="Cart">
-                                        <span> {{$cart->quantity * $cart->price}}  </span>
-                                    </td>
+                                    {{-- <td class="text-right" data-title="Cart">
+                                        <span><?php echo number_format($cart->quantity * $cart->price); ?>  đ </span>
+                                    </td> --}}
                                     <td class="action" data-title="" >
                                         <a href="{{route('delete-product-i',$cart->product->id)}}">
                                             <i class="fi-rs-trash"></i>

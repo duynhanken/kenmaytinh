@@ -1,9 +1,6 @@
 {{-- Dem tong so sp cart --}}
-{{-- @php
-    use App\Http\Controllers\Client\CartClientController;
-    $cart_count = CartClientController::cartCount();
-    $all_cart = CartClientController::allcartCount();
-@endphp --}}
+
+
 
 <!--Nếu chưa đăng nhập
 -->
@@ -116,13 +113,13 @@ Session::put('error',null);
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="{{ route('view-to-cart') }}">
                                         <img alt="Surfside Media" src="{!! asset('layout/assets/imgs/theme/icons/icon-cart.svg') !!}">
-                                        {{-- <span class="pro-count blue">{{ $cart_count }}</span> --}}
+                                        <span class="pro-count blue">{{ $cart_count }}</span>
                                     </a>
 
 
 
 
-                                    {{-- <div class="cart-dropdown-wrap cart-dropdown-hm2">
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                         @foreach ($all_cart as $cart)
                                             <ul>
                                                 <li>
@@ -153,7 +150,7 @@ Session::put('error',null);
                                                
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
 
 
                                 </div>
@@ -189,18 +186,15 @@ Session::put('error',null);
                                                             <h4><a
                                                                     href="{{ route('get-client-productDetail', $details['id']) }}">{{ $details['name'] }}</a>
                                                             </h4>
-                                                            <h4><span>SL: {{ $details['quantity'] }} </span> Price:
-                                                                {{ $details['price'] }}</h4>
+                                                           
                                                         </div>
+                                                        <h4><span>SL: {{ $details['quantity'] }} </span> Price:
+                                                            {{ $details['price'] }}</h4>
                                                         <div class="shopping-cart-delete">
                                                             <a href="{{route('remove-to-cart', $details['id'])}}"><i class="fi-rs-cross-small"></i></a>
                                                         </div>
                                                     </li>
-                                                    <div class="shopping-cart-total">
-                                                        <h4>Total <span>
-                                                                {{ $total }}
-                                                            </span></h4>
-                                                    </div>
+                                                    
                                                 @endforeach
                                             </ul>
                                             <div class="shopping-cart-footer">
@@ -261,7 +255,8 @@ Session::put('error',null);
             @endif
         </div>
 
-     
+        
+        
 
         @yield('content')
 
@@ -338,6 +333,7 @@ Session::put('error',null);
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    @vite(['public/layout/assets/js/moneyformat'])
     
     @yield('scripts')
 
